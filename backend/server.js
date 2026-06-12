@@ -21,14 +21,18 @@ app.use('/api/deals', require('./routes/deals'));
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 
-// Serve React frontend if built dist exists
+// Serve React frontend static assets (JS, CSS, images, etc.)
 const frontendDist = path.join(__dirname, '..', 'frontend', 'dist');
-if (fs.existsSync(frontendDist)) {
-  app.use(express.static(frontendDist));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(frontendDist, 'index.html'));
+app.use(express.static(frontendDist));
+
+// SPA fallback: serve index.html for all non-API GET requests so that
+// client-side routes like /reset-password work on direct navigation.
+// Registered after all /api routes so it never intercepts them.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(frontendDist, 'index.html'), (err) => {
+    if (err) res.status(404).send('Not found');
   });
-}
+});
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`CRM API running on http://localhost:${PORT}`));

@@ -4,7 +4,7 @@ import { createOpportunity, updateOpportunity, getStageHistory, deleteOpportunit
 import { ConfirmDialog } from './ui/ConfirmDialog';
 import { formatDate, STAGE_COLORS } from '../utils/formatters';
 
-const RELATIONSHIPS = ['Jerry','Tom','Jonathan','Jay','Andy'];
+const RELATIONSHIPS = ['Tom','Jerry'];
 const PRIORITIES = ['High','Medium','Low'];
 
 const OPP_PROCESS = {
@@ -15,7 +15,7 @@ const OPP_PROCESS = {
 
 const OPP_TYPES = {
   Individual: ['DVA','PPLI','Life','Annuity','P&C'],
-  Institution: ['DVA','PPLI','Life','Annuity','P&C'],
+  Institution: ['DVA','PPLI','BOLI','ICOLI','Life','P&C'],
   Platform: ['DVA','PPLI','Institutional']
 };
 

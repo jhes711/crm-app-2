@@ -7,7 +7,6 @@ import { OpportunitiesList } from './components/OpportunitiesList';
 import { OpportunityForm } from './components/OpportunityForm';
 import { Reports } from './components/Reports';
 import { ActivityLogPage } from './components/ActivityLog';
-import { ActivityTracker } from './components/ActivityTracker';
 import { CompensationTracker } from './components/CompensationTracker';
 import { ToastContainer } from './components/ui/Toast';
 import { useToast } from './hooks/useToast';
@@ -89,7 +88,6 @@ export default function App() {
           <Route path="/opportunities" element={<OpportunitiesList key={refreshKey} onAdd={openAdd} onEdit={openEdit} toast={toast} />} />
           <Route path="/reports" element={<Reports toast={toast} />} />
           <Route path="/activity" element={<ActivityLogPage key={refreshKey} />} />
-          <Route path="/activity-tracker" element={<ActivityTracker toast={toast} />} />
           <Route path="/compensation" element={<CompensationTracker toast={toast} />} />
         </Routes>
       </main>

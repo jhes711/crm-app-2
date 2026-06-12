@@ -5,7 +5,7 @@ import { Search, Plus, Pencil, Trash2, ChevronUp, ChevronDown, SlidersHorizontal
 import { ConfirmDialog } from './ui/ConfirmDialog';
 
 const OPP_PROCESSES = ['Prospect','QP','Appt.','Case Open','Closing','UW','Sale Made','Inactive','Not Interested','Open','Due Diligence','Allocation'];
-const OPP_TYPES = ['DVA','PPLI','Life','Annuity','P&C','Institutional'];
+const OPP_TYPES = ['DVA','PPLI','BOLI','ICOLI','Life','Annuity','P&C','Institutional'];
 
 export const OpportunitiesList = ({ onAdd, onEdit, toast }) => {
   const [opps, setOpps] = useState([]);
@@ -98,7 +98,7 @@ export const OpportunitiesList = ({ onAdd, onEdit, toast }) => {
             { k: 'client_type', label: 'Client Type', opts: ['Individual','Institution','Platform'] },
             { k: 'opp_process', label: 'Opp. Process', opts: OPP_PROCESSES },
             { k: 'opp_type', label: 'Opp. Type', opts: OPP_TYPES },
-            { k: 'relationship', label: 'Relationship', opts: ['Jerry','Tom','Jonathan','Jay','Andy'] },
+            { k: 'relationship', label: 'Relationship', opts: ['Tom','Jerry'] },
             { k: 'priority', label: 'Priority', opts: ['High','Medium','Low'] }
           ].map(({ k, label, opts }) => (
             <div key={k}>

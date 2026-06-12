@@ -1,13 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Users, BarChart3, Activity, TrendingUp, LogOut, CheckSquare, DollarSign, X } from 'lucide-react';
+import { LayoutDashboard, Users, BarChart3, Activity, TrendingUp, LogOut, DollarSign, X } from 'lucide-react';
 
 const links = [
   { to: '/', icon: LayoutDashboard, label: 'Dashboard' },
   { to: '/opportunities', icon: Users, label: 'Opportunities' },
   { to: '/reports', icon: BarChart3, label: 'Reports' },
   { to: '/activity', icon: Activity, label: 'Activity Log' },
-  { to: '/activity-tracker', icon: CheckSquare, label: 'Activity Tracker' },
   { to: '/compensation', icon: DollarSign, label: 'Compensation' },
 ];
 

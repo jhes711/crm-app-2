@@ -24,7 +24,9 @@ const EMPTY = {
   institution_name: '', referred_by: '', relationship: 'Jerry',
   opp_process: 'Prospect', opp_type: 'DVA',
   potential_revenue: '', aum: '', last_contact: '', notes: '',
-  priority: 'Medium', next_followup: ''
+  priority: 'Medium', next_followup: '',
+  contact1_first_name: '', contact1_last_name: '',
+  contact2_first_name: '', contact2_last_name: '',
 };
 
 const Field = ({ label, required, children }) => (
@@ -35,7 +37,13 @@ const Field = ({ label, required, children }) => (
 );
 
 export const OpportunityForm = ({ record, onClose, onSaved, toast }) => {
-  const [form, setForm] = useState(record ? { ...record } : { ...EMPTY });
+  const [form, setForm] = useState(record ? {
+    ...record,
+    contact1_first_name: record.contact1_first_name || '',
+    contact1_last_name:  record.contact1_last_name  || '',
+    contact2_first_name: record.contact2_first_name || '',
+    contact2_last_name:  record.contact2_last_name  || '',
+  } : { ...EMPTY });
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
@@ -200,6 +208,29 @@ export const OpportunityForm = ({ record, onClose, onSaved, toast }) => {
                 <Field label="Institution Name" required>
                   <input className={`input ${err('institution_name')}`} value={form.institution_name} onChange={e => set('institution_name', e.target.value)} placeholder="Institution name" />
                 </Field>
+              )}
+
+              {/* Contacts — Institution only */}
+              {form.client_type === 'Institution' && (
+                <div className="space-y-3">
+                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Contacts</p>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Field label="Contact 1 — First Name">
+                      <input className="input" value={form.contact1_first_name} onChange={e => set('contact1_first_name', e.target.value)} placeholder="First name" />
+                    </Field>
+                    <Field label="Contact 1 — Last Name">
+                      <input className="input" value={form.contact1_last_name} onChange={e => set('contact1_last_name', e.target.value)} placeholder="Last name" />
+                    </Field>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Field label="Contact 2 — First Name">
+                      <input className="input" value={form.contact2_first_name} onChange={e => set('contact2_first_name', e.target.value)} placeholder="First name" />
+                    </Field>
+                    <Field label="Contact 2 — Last Name">
+                      <input className="input" value={form.contact2_last_name} onChange={e => set('contact2_last_name', e.target.value)} placeholder="Last name" />
+                    </Field>
+                  </div>
+                </div>
               )}
 
               <div className="grid grid-cols-2 gap-4">

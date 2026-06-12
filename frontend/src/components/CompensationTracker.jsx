@@ -8,9 +8,9 @@ const ANNUAL_HIG_GOAL = 500000;
 const STAGES = ['UW', 'CO', 'Sale', 'Inactive'];
 
 const STAGE_COLORS = {
-  UW:       'bg-[#FFF4EE] text-[#EA501A]',
-  CO:       'bg-yellow-100 text-[#8B6A00]',
-  Sale:     'bg-green-100 text-[#008B3D]',
+  UW:       'bg-yellow-50 text-yellow-700',
+  CO:       'bg-yellow-100 text-yellow-800',
+  Sale:     'bg-green-100 text-green-800',
   Inactive: 'bg-gray-100 text-gray-500',
 };
 
@@ -165,7 +165,7 @@ export const CompensationTracker = ({ toast }) => {
         </div>
         <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
           <div
-            className={`h-3 rounded-full transition-all duration-500 ease-out ${higGoalMet ? 'bg-[#008B3D]' : 'bg-[#EA501A]'}`}
+            className={`h-3 rounded-full transition-all duration-500 ease-out ${higGoalMet ? 'bg-green-700' : 'bg-teal-500'}`}
             style={{ width: `${higPct}%` }}
           />
         </div>

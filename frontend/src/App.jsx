@@ -57,7 +57,7 @@ export default function App() {
           <div className="w-7 h-7 rounded-lg bg-teal-500 flex items-center justify-center">
             <TrendingUp className="w-4 h-4 text-white" />
           </div>
-          <span className="text-white font-semibold text-sm">VO-CRM</span>
+          <span className="text-white font-semibold text-sm">ONYX-CRM</span>
         </div>
         <button
           onClick={() => setMobileOpen(true)}

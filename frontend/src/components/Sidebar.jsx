@@ -24,7 +24,7 @@ export const Sidebar = ({ onLogout, mobileOpen, onMobileClose }) => (
           <TrendingUp className="w-5 h-5 text-white" />
         </div>
         <div>
-          <p className="text-white font-semibold text-sm leading-tight">VO-CRM</p>
+          <p className="text-white font-semibold text-sm leading-tight">ONYX-CRM</p>
           <p className="text-slate-400 text-xs">Insurance & Investment</p>
         </div>
       </div>

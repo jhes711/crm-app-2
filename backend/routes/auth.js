@@ -42,7 +42,7 @@ router.post('/forgot-password', async (req, res) => {
 
   db.prepare('INSERT INTO reset_tokens (token, expires_at) VALUES (?, ?)').run(token, expiresAt);
 
-  const appUrl = process.env.RESET_APP_URL || 'http://localhost:5173';
+  const appUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
   const resetUrl = `${appUrl}/reset-password?token=${token}`;
   const userEmail = process.env.RESET_EMAIL || 'jhes711@gmail.com';
 

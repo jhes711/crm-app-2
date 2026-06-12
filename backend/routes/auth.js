@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const crypto = require('crypto');
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 const db = require('../db/database');
 
 function hashPassword(password) {
@@ -46,25 +46,17 @@ router.post('/forgot-password', async (req, res) => {
   const resetUrl = `${appUrl}/reset-password?token=${token}`;
   const userEmail = process.env.RESET_EMAIL || 'jhes711@gmail.com';
 
-  if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+  if (!process.env.RESEND_API_KEY) {
     return res.status(500).json({
-      error: 'Email not configured. Please set GMAIL_USER and GMAIL_APP_PASSWORD in backend/.env',
+      error: 'Email not configured. Please set RESEND_API_KEY in the environment.',
     });
   }
 
-  const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_APP_PASSWORD,
-    },
-  });
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
   try {
-    await transporter.sendMail({
-      from: `"VO-CRM" <${process.env.GMAIL_USER}>`,
+    await resend.emails.send({
+      from: 'onboarding@resend.dev',
       to: userEmail,
       subject: 'VO-CRM Password Reset',
       html: `
@@ -88,7 +80,7 @@ router.post('/forgot-password', async (req, res) => {
     res.json({ success: true });
   } catch (err) {
     console.error('Email send failed:', err.message);
-    res.status(500).json({ error: 'Failed to send reset email. Check your Gmail SMTP configuration in backend/.env' });
+    res.status(500).json({ error: 'Failed to send reset email. Check your RESEND_API_KEY configuration.' });
   }
 });
 
